@@ -15,7 +15,13 @@ do
 		1) echo "result : $((a+b))";;
 		2) echo "result : $((a-b))";;
 		3) echo "result : $((a*b))";;
-		4) echo "result : $((a/b))";;
+		4) if [ $b -ne 0 ]
+		   then
+			   echo "result : $((a/b));";
+		   else
+			   echo "Division by zero error";
+		   fi;;
+		*) echo "Enter valid option";;
 	esac
 	
 	read -p "To continue, press 1 : " op
