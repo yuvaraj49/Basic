@@ -1,1 +1,0 @@
-this will teach u how to pull from remote repo.
