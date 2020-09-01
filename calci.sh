@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# This script is simulates a simple calculator with 4 arithmetic operations
+
 op=1;
 while [ $op -ne 0 ]
 do
