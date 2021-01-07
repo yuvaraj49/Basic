@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>University time table</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial scale=1.0">
+	<style type="text/css">
+		body {
+			font-family: verdana;
+			background-image:linear-gradient(#188fff,#dbdbdb,aqua);
+			background-attachment: fixed;
+		}
+		h2 {
+			text-align: center;
+		}
+		#inpsform {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+		#result,#result td {
+			border-collapse: collapse;
+			border:1px solid black;
+		}
+		#result td {
+			padding: 3px;
+		}
+		#result {
+			overflow-x: scroll;
+		}
+	</style>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="main-algo.js"></script>
+
+	<script type="text/javascript" src="user-display.js"></script>
+</head>
+<body>
+	<h2>Generate a time table by providing various inputs</h2> <br>
+	
+		<table style="text-align: center;">
+			<tr>	
+				<td> <label for="numclasses">Enter number of subjects : </label> </td>
+				<td> <input type="number" id="numclasses" name="numclass"> </ins> </td>
+			</tr>
+			<tr>
+				<td colspan="2"><button id="enter"> Enter data </button></td>
+			</tr>
+		</table>
+	
+	<br> <br>
+	<div id='inpsform'>
+		<div id="databox"></div>
+		<div>
+			<ul id="metaresult"></ul>
+			<table id="result">
+				
+			</table>
+			<ul id="faclist"></ul>
+		</div>
+	</div> <br>
+
+</body>
+</html>
