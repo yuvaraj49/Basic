@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<style>
+	button {
+    	background-color:cyan;
+        font-size:20px;
+    }
+</style>
+<script>
+	var val;
+	function add()
+    {
+    	val=document.getElementById("value").innerHTML;
+        val=parseInt(val)+1;
+       	document.getElementById("value").innerHTML=val;
+    }
+    function remove()
+    {
+    	val=document.getElementById("value").innerHTML;
+        if(val>=2)
+        {
+        	val=parseInt(val)-1;
+       		document.getElementById("value").innerHTML=val;
+        }
+    }
+</script>
+<body>
+<button> <span onclick="add()">+</span> <span id="value"> 1 </span> <span onclick="remove()">-</span></button>
+</body>
+</html>
