@@ -12,7 +12,7 @@
 	<!-- js reference to jquery,computer,tspSolver  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="./computer.js"></script>
-	<!-- <script src="js/tspSolver.js"></script> -->
+	
 </head>
 <body>
 	<div class="container pt-3" id="interface">
@@ -42,12 +42,19 @@
 		<!-- Output Table -->
 		<div class="table-responsive">
 			<table id="dataout" class="table table-striped table-*-responsive">
-				<tr><th>S.no</th><th>Coordinates</th><th>Location name</th><th>Choose as Source</th></tr>
+				<tr><th>S.no</th><th>Location name</th><th>Coordinates</th><th>Choose as Source</th></tr>
 			</table>
 		</div>
 
 		<!-- Output showing path -->
 		<div id="matrix"></div>
+		<hr/>
+		<button id="showDetails" style="display:none" class="btn btn-secondary">Show the Distance matrix</button>
+		<div class='table-responsive'>
+			<table id="dmatrix" class="table table-*-responsive" style="display:none">
+
+			</table>
+		</div>
 	</div>
 </body>
 </html>
