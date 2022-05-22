@@ -291,7 +291,7 @@ $(document).ready(function() {
 
 		content="<ol>"
 		content+="<li><strong class='text-success'>"+locnames[srcindex]+"</strong> &#10145;</li>";		
-		for(var i=1;i<finalpath.length-2;i++)
+		for(var i=1;i<finalpath.length-1;i++)
 		{
 			content+="<li><strong class='text-success'>"+locnames[finalpath[i]]+"</strong> &#10145;</li>";	
 		}
