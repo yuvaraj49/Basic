@@ -359,13 +359,13 @@ $(document).ready(function() {
 			success: function(data)
 			{
 
-			var map = new Microsoft.Maps.Map('#myMap', {
+				var map = new Microsoft.Maps.Map('#myMap', {
 	        	credentials: 'AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2',
 	        	center: new Microsoft.Maps.Location(cordlist[finalpath[0]].lat,cordlist[finalpath[0]].lng)
 	    		
 	    		});
 
-			map.setView({
+				map.setView({
 	        	zoom: 10
 	    		});
 
@@ -374,12 +374,42 @@ $(document).ready(function() {
 	    		{
 	    			var current=new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(cordlist[finalpath[i]].lat,cordlist[finalpath[i]].lng), {
 	    			text:""+(i+1),
-				title: locnames[finalpath[i]],
+	    			title: locnames[finalpath[i]],
 	    			width:2
 	    			});
 	    			
 	    			map.entities.push(current);
-	    			}
+	    		}
+
+	    		// Draw route path line between the locations to be visited
+	    		for(var i=0;i<cordlist.length-1;i++)
+				{
+					$.ajax({
+
+						url: "https://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0="+cordlist[finalpath[i]].lat+","+cordlist[finalpath[i]].lng+"&wp.1="+cordlist[finalpath[i+1]].lat+","+cordlist[finalpath[i+1]].lng+"&optmz=distance&routeAttributes=routePath&key=AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2",
+
+						//url: "https://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0=17.6868,83.2185&wp.1=18.1067,83.3956&optmz=distance&routeAttributes=routePath&key=AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2",
+				
+						type: "GET",
+						success: function(data)
+						{
+
+	    					var points=data.resourceSets[0].resources[0].routePath.line.coordinates;
+                    		var linevertices=[];
+        			
+        					for(var i=0;i<points.length;i++)
+        					{
+        						var loc=new Microsoft.Maps.Location(points[i][0],points[i][1]);
+                        		linevertices.push(loc);
+        					}
+                    
+                   			var line=new Microsoft.Maps.Polyline(linevertices);
+
+                    		map.entities.push(line);
+
+						}	
+					});
+				}
 			}
 		});
 	});
