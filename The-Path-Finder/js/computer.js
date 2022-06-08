@@ -374,7 +374,7 @@ $(document).ready(function() {
 	    		{
 	    			var current=new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(cordlist[finalpath[i]].lat,cordlist[finalpath[i]].lng), {
 	    			text:""+(i+1),
-	    			subTitle:"yes",
+				title: locnames[finalpath[i]],
 	    			width:2
 	    			});
 	    			
