@@ -225,21 +225,21 @@ $(document).ready(function() {
 		{
 			var allperms = [];
 			for (var i = 0; i < seq.length; i=i+1)
-        		{
-        			var rest = perm(seq.slice(0, i).concat(seq.slice(i + 1)));
-                		if(!rest.length)
-                		{
-                        		allperms.push([seq[i]])
-                		}
-                		else
-                		{
-                			for(var j = 0; j < rest.length; j=j+1)
-                			{
-                				allperms.push([seq[i]].concat(rest[j]))
-                			}
-                		}
-        		}
-        		return allperms;
+        	{
+        		var rest = perm(seq.slice(0, i).concat(seq.slice(i + 1)));
+                if(!rest.length)
+                {
+                        allperms.push([seq[i]])
+                }
+                else
+                {
+                	for(var j = 0; j < rest.length; j=j+1)
+                	{
+                		allperms.push([seq[i]].concat(rest[j]))
+                	}
+                }
+        	}
+        	return allperms;
 		}
 
 		function solveForTSP()
@@ -255,22 +255,22 @@ $(document).ready(function() {
 			var allperms=perm(seq);
 		
         
-        		for(var i=0;i<allperms.length;i++)
-        		{
-                		var totaldist=dmatrix[srcindex][allperms[i][0]]
-                		var j=0;
-                		while(j<allperms[i].length-1)
-                		{
-                        		totaldist+=dmatrix[allperms[i][j]][allperms[i][j+1]]
-                        		j+=1
-                		}
-                		totaldist+=dmatrix[allperms[i][j]][srcindex]
-                		if(totaldist<totalcost)
-                		{
-                        		totalcost=totaldist;
-                        		finalpath=allperms[i];
-                		}
-        		}
+        	for(var i=0;i<allperms.length;i++)
+        	{
+                var totaldist=dmatrix[srcindex][allperms[i][0]]
+                var j=0;
+                while(j<allperms[i].length-1)
+                {
+                        totaldist+=dmatrix[allperms[i][j]][allperms[i][j+1]]
+                        j+=1
+                }
+                totaldist+=dmatrix[allperms[i][j]][srcindex]
+                if(totaldist<totalcost)
+                {
+                        totalcost=totaldist;
+                        finalpath=allperms[i];
+                }
+        	}
 		}
 
 		//solveForTSP();
@@ -350,7 +350,8 @@ $(document).ready(function() {
 				$("#showDetails").html("Show the Distance matrix");
 			}
 		});
-		
+
+
 		// Produce map output
 		$.ajax({
 
@@ -394,8 +395,8 @@ $(document).ready(function() {
 						success: function(data)
 						{
 
-	    						var points=data.resourceSets[0].resources[0].routePath.line.coordinates;
-                    					var linevertices=[];
+		    					var points=data.resourceSets[0].resources[0].routePath.line.coordinates;
+        			            		var linevertices=[];
         			
         						for(var i=0;i<points.length;i++)
         						{
@@ -404,35 +405,40 @@ $(document).ready(function() {
         						}
                     
                    					var line=new Microsoft.Maps.Polyline(linevertices);
-	
-        			            		map.entities.push(line);
+
+                    					map.entities.push(line);
+
 						}	
 					});
 				}
-			}
-			
-			// Path from last location to source location
-			$.ajax({
-				url: "https://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0="+cordlist[finalpath[i]].lat+","+cordlist[finalpath[i]].lng+"&wp.1="+cordlist[finalpath[0]].lat+","+cordlist[finalpath[0]].lng+"&optmz=distance&routeAttributes=routePath&key=AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2",
-				type: "GET",
-				success: function(data)
-				{
 
-					var points=data.resourceSets[0].resources[0].routePath.line.coordinates;
-					var linevertices=[];
+				// Path from last location to source location
+				$.ajax({
 
-					for(var i=0;i<points.length;i++)
+					url: "https://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0="+cordlist[finalpath[i]].lat+","+cordlist[finalpath[i]].lng+"&wp.1="+cordlist[finalpath[0]].lat+","+cordlist[finalpath[0]].lng+"&optmz=distance&routeAttributes=routePath&key=AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2",
+
+					//url: "https://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0=17.6868,83.2185&wp.1=18.1067,83.3956&optmz=distance&routeAttributes=routePath&key=AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2",
+				
+					type: "GET",
+					success: function(data)
 					{
-						var loc=new Microsoft.Maps.Location(points[i][0],points[i][1]);
-						linevertices.push(loc);
-					}
 
-					var line=new Microsoft.Maps.Polyline(linevertices);
+	    					var points=data.resourceSets[0].resources[0].routePath.line.coordinates;
+                				var linevertices=[];
+    			
+    						for(var i=0;i<points.length;i++)
+    						{
+    							var loc=new Microsoft.Maps.Location(points[i][0],points[i][1]);
+                    					linevertices.push(loc);
+    						}
+                
+               					var line=new Microsoft.Maps.Polyline(linevertices);
 
-					map.entities.push(line);
+                				map.entities.push(line);
 
-				}	
-			});
+					}	
+				});
+			}
 		});
 	});
 });
