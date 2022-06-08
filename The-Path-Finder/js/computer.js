@@ -225,21 +225,21 @@ $(document).ready(function() {
 		{
 			var allperms = [];
 			for (var i = 0; i < seq.length; i=i+1)
-        	{
-        		var rest = perm(seq.slice(0, i).concat(seq.slice(i + 1)));
-                if(!rest.length)
-                {
-                        allperms.push([seq[i]])
-                }
-                else
-                {
-                	for(var j = 0; j < rest.length; j=j+1)
-                	{
-                		allperms.push([seq[i]].concat(rest[j]))
-                	}
-                }
-        	}
-        	return allperms;
+        		{
+        			var rest = perm(seq.slice(0, i).concat(seq.slice(i + 1)));
+                		if(!rest.length)
+                		{
+                        		allperms.push([seq[i]])
+                		}
+                		else
+                		{
+                			for(var j = 0; j < rest.length; j=j+1)
+                			{
+                				allperms.push([seq[i]].concat(rest[j]))
+                			}
+                		}
+        		}
+        		return allperms;
 		}
 
 		function solveForTSP()
@@ -255,22 +255,22 @@ $(document).ready(function() {
 			var allperms=perm(seq);
 		
         
-        	for(var i=0;i<allperms.length;i++)
-        	{
-                var totaldist=dmatrix[srcindex][allperms[i][0]]
-                var j=0;
-                while(j<allperms[i].length-1)
-                {
-                        totaldist+=dmatrix[allperms[i][j]][allperms[i][j+1]]
-                        j+=1
-                }
-                totaldist+=dmatrix[allperms[i][j]][srcindex]
-                if(totaldist<totalcost)
-                {
-                        totalcost=totaldist;
-                        finalpath=allperms[i];
-                }
-        	}
+        		for(var i=0;i<allperms.length;i++)
+        		{
+                		var totaldist=dmatrix[srcindex][allperms[i][0]]
+                		var j=0;
+                		while(j<allperms[i].length-1)
+                		{
+                        		totaldist+=dmatrix[allperms[i][j]][allperms[i][j+1]]
+                        		j+=1
+                		}
+                		totaldist+=dmatrix[allperms[i][j]][srcindex]
+                		if(totaldist<totalcost)
+                		{
+                        		totalcost=totaldist;
+                        		finalpath=allperms[i];
+                		}
+        		}
 		}
 
 		//solveForTSP();
@@ -359,13 +359,13 @@ $(document).ready(function() {
 			success: function(data)
 			{
 
-				var map = new Microsoft.Maps.Map('#myMap', {
+			var map = new Microsoft.Maps.Map('#myMap', {
 	        	credentials: 'AkW_VcHhnQ2h7_vCU7CeSvNeOWG3Z6mDyEGAgazwHSRebxY1agfeOrWoIKk0a-V2',
 	        	center: new Microsoft.Maps.Location(cordlist[finalpath[0]].lat,cordlist[finalpath[0]].lng)
 	    		
 	    		});
 
-				map.setView({
+			map.setView({
 	        	zoom: 10
 	    		});
 
@@ -379,7 +379,7 @@ $(document).ready(function() {
 	    			});
 	    			
 	    			map.entities.push(current);
-	    		}
+	    			}
 			}
 		});
 	});
